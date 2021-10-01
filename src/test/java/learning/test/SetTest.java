@@ -3,6 +3,8 @@ package learning.test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -30,5 +32,12 @@ public class SetTest {
 
         //when, then
         assertThat(numbers).hasSize(expectedSize);
+    }
+
+    @ParameterizedTest(name = "[{index}] ParameterizedTest를 활용해 중복 코드를 제거 할수 있는가? number: {argumentsWithNames}")
+    @ValueSource(ints = {1, 2, 3})
+    void contains(int number) {
+        //when, then
+        assertThat(numbers.contains(number)).isTrue();
     }
 }
