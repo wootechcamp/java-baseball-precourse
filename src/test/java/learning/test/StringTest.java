@@ -39,4 +39,21 @@ public class StringTest {
                 .as("`,`로 split 했을 때 1만 포함하는가?")
                 .containsExactly("1");
     }
+
+    @Test
+    @DisplayName("\"(1,2)\"값이 주어졌을 때 String의 substring() 메소드를 활용해 `()`을 제거하고 \"1,2\"를 반환하도록 구현한다.")
+    void 소괄호가_포함_된_CSV값에서_소괄호를_제외_한_플레인한_CSV를_반환하는가() {
+        //given
+        final String csvValue = "(1,2)";
+        final int beginIndex = 1;
+        final int endIndex = csvValue.length() - 1;
+
+        //when
+        final String substring = csvValue.substring(beginIndex, endIndex);
+
+        //then
+        assertThat(substring)
+                .as("`()`을 제거하고 1,2를 반환하는가?")
+                .isEqualTo("1,2");
+    }
 }
