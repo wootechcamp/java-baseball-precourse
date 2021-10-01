@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-@DisplayName("학습테스트 - String Class")
+@DisplayName("학습테스트 - String")
 public class StringTest {
 
     private final static String DELIMITER = ",";
