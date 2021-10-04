@@ -25,7 +25,7 @@ public class Balls {
         return index;
     }
 
-    public List<Ball> getBalls() {
+    public List<Ball> get() {
         return balls;
     }
 

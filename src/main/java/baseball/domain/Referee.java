@@ -11,7 +11,7 @@ public class Referee {
     public BallStatuses judge(final Balls computerBalls, final Balls pitcherBalls) {
         final List<BallStatus> ballStatuses = new ArrayList<>();
 
-        for (Ball pitcherBall : pitcherBalls.getBalls()) {
+        for (Ball pitcherBall : pitcherBalls.get()) {
             ballStatuses.add(judge(computerBalls, pitcherBall));
         }
 
@@ -33,7 +33,7 @@ public class Referee {
     private boolean isStrike(final Balls computerBalls, final Ball pitcherBall) {
         final BallPosition pitcherBallPosition = pitcherBall.getPosition();
 
-        final Ball computerBall = computerBalls.getBalls().get(pitcherBallPosition.get());
+        final Ball computerBall = computerBalls.get().get(pitcherBallPosition.get());
         final BallPosition computerBallPosition = computerBall.getPosition();
         final BallNumber computerBallNumber = computerBall.getNumber();
 
@@ -42,6 +42,6 @@ public class Referee {
     }
 
     private boolean isBall(final Balls computerBalls, final Ball pitcherBall) {
-        return computerBalls.getBalls().contains(pitcherBall);
+        return computerBalls.get().contains(pitcherBall);
     }
 }
