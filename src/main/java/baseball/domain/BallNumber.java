@@ -1,6 +1,7 @@
 package baseball.domain;
 
 import baseball.exception.BallNumberOutOfRangeException;
+import baseball.exception.IllegalInputValueException;
 import java.util.Objects;
 
 public class BallNumber {
@@ -8,6 +9,14 @@ public class BallNumber {
     public static final int MAXIMUM_NUMBER = 9;
 
     private final int number;
+
+    public static BallNumber convert(final String inputValue) {
+        try {
+            return new BallNumber(Integer.parseInt(inputValue));
+        } catch (NumberFormatException e) {
+            throw new IllegalInputValueException("숫자 만 입력해 주세요.");
+        }
+    }
 
     public BallNumber(final int number) {
         verifyBallNumber(number);
