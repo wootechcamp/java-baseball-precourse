@@ -1,4 +1,4 @@
-package baseball.view;
+package baseball.controller;
 
 import baseball.domain.Balls;
 import baseball.domain.Computer;
@@ -11,15 +11,15 @@ import baseball.exception.IllegalInputValueException;
 import java.text.MessageFormat;
 import nextstep.utils.Console;
 
-public class GameController {
+public class NumberBaseballGameController {
     private static GameStatus gameStatus = GameStatus.START;
     private static Balls computerBalls;
 
     private final Computer computer;
     private final Pitcher pitcher;
-    private final GameViewer viewer;
+    private final NumberBaseballGameViewer viewer;
 
-    public GameController(Computer computer, Pitcher pitcher, GameViewer viewer) {
+    public NumberBaseballGameController(Computer computer, Pitcher pitcher, NumberBaseballGameViewer viewer) {
         this.computer = computer;
         this.pitcher = pitcher;
         this.viewer = viewer;

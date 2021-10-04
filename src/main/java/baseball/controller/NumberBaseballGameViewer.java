@@ -1,4 +1,4 @@
-package baseball.view;
+package baseball.controller;
 
 import baseball.enums.BallStatus;
 import baseball.enums.BallStatuses;
@@ -6,7 +6,7 @@ import baseball.enums.GameStatus;
 import java.text.MessageFormat;
 import java.util.StringJoiner;
 
-public class GameViewer {
+public class NumberBaseballGameViewer {
     public void printGameMessage(GameStatus gameStatus) {
         System.out.println(gameStatus.getMessage());
     }
