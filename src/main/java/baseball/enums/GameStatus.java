@@ -7,14 +7,22 @@ public enum GameStatus {
     START("-1", "숫자를 입력해주세요 : "),
     COMPLETE("0", "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요."),
     RESTART("1", "숫자를 입력해주세요 : "),
-    TERMINATE("2", "게임 끝");
+    TERMINATE("2", "3개의 숫자를 모두 맞히셨습니다! 게임 끝");
 
     private final String status;
     private final String message;
 
-    GameStatus(String status, String message) {
+    GameStatus(final String status, final String message) {
         this.status = status;
         this.message = message;
+    }
+
+    public static boolean isContinuable(final GameStatus status) {
+        return EnumSet.of(START, RESTART).contains(status);
+    }
+
+    public static boolean isChooseStatus(final String status) {
+        return Arrays.asList(RESTART.getStatus(), TERMINATE.getStatus()).contains(status);
     }
 
     public String getStatus() {
@@ -25,11 +33,11 @@ public enum GameStatus {
         return message;
     }
 
-    public static boolean isContinuable(GameStatus status) {
-        return EnumSet.of(START, RESTART).contains(status);
+    public boolean match(final GameStatus gameStatus) {
+        return this.equals(gameStatus);
     }
 
-    public static boolean isChooseStatus(String status) {
-        return Arrays.asList(RESTART.getStatus(), TERMINATE.getStatus()).contains(status);
+    public boolean match(final String gameStatus) {
+        return status.equals(gameStatus);
     }
 }

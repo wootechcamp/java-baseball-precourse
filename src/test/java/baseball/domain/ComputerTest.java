@@ -20,7 +20,7 @@ class ComputerTest {
                 //then
                 assertThat(balls)
                     .as("임의의수 3개를 반환하는가?")
-                    .extracting(ballGroups -> ballGroups.getBalls().size())
+                    .extracting(ballGroups -> ballGroups.get().size())
                     .isEqualTo(Balls.BALLS_SIZE);
 
             });

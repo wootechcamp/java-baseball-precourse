@@ -1,6 +1,6 @@
 package baseball.domain;
 
-import baseball.exception.CannotMakeBallsException;
+import baseball.exception.BallsSizeOutOfIndexException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +10,17 @@ public class Balls {
     private int index;
     private final List<Ball> balls = new ArrayList<>();
 
-    public Balls(Ball ball) {
+    public static Balls convert(final String[] inputValues) {
+        final List<Ball> balls = new ArrayList<>();
+
+        for (int index = 0; index < inputValues.length; index++) {
+            balls.add(new Ball(new BallPosition(index), BallNumber.convert(inputValues[index])));
+        }
+
+        return new Balls(balls);
+    }
+
+    public Balls(final Ball ball) {
         addBall(ball);
     }
 
@@ -25,7 +35,7 @@ public class Balls {
         return index;
     }
 
-    public List<Ball> getBalls() {
+    public List<Ball> get() {
         return balls;
     }
 
@@ -44,7 +54,7 @@ public class Balls {
 
     private void verifyBalls(final List<Ball> balls) {
         if (balls.size() > BALLS_SIZE) {
-            throw new CannotMakeBallsException();
+            throw new BallsSizeOutOfIndexException();
         }
     }
 

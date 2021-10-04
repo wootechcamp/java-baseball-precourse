@@ -11,23 +11,23 @@ public class Ball {
         this.number = number;
     }
 
-    public BallPosition getBallPosition() {
+    public BallPosition getPosition() {
         return position;
     }
 
-    public BallNumber getBallNumber() {
+    public BallNumber getNumber() {
         return number;
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) {
             return true;
         }
         if (!(o instanceof Ball)) {
             return false;
         }
-        Ball ball = (Ball)o;
+        final Ball ball = (Ball)o;
         return number.equals(ball.number);
     }
 

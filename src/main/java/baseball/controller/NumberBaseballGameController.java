@@ -45,26 +45,28 @@ public class NumberBaseballGameController {
             viewer.printGameResult(ballStatuses);
 
             completeGame(ballStatuses);
-            chooseGameContinueOrNot();
         } catch (BaseballRuntimeException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    private void completeGame(BallStatuses ballStatuses) {
+    private void completeGame(final BallStatuses ballStatuses) {
         if (!ballStatuses.isCompleted()) {
             return;
         }
 
-        gameStatus = GameStatus.COMPLETE;
+        changeGameStatus(GameStatus.COMPLETE);
+
+        chooseGameContinueOrNot();
     }
 
     private void chooseGameContinueOrNot() {
-        if (!GameStatus.COMPLETE.equals(gameStatus)) {
+        if (!GameStatus.COMPLETE.match(gameStatus)) {
             return;
         }
 
         viewer.printGameMessage(gameStatus);
+
         final String status = insertStatus();
 
         restartGame(status);
@@ -72,11 +74,12 @@ public class NumberBaseballGameController {
     }
 
     private void restartGame(final String status) {
-        if (!GameStatus.RESTART.getStatus().equals(status)) {
+        if (!GameStatus.RESTART.match(status)) {
             return;
         }
 
-        gameStatus = GameStatus.RESTART;
+        changeGameStatus(GameStatus.RESTART);
+
         prepareBalls();
     }
 
@@ -85,7 +88,7 @@ public class NumberBaseballGameController {
             return;
         }
 
-        gameStatus = GameStatus.TERMINATE;
+        changeGameStatus(GameStatus.TERMINATE);
 
         viewer.printGameMessage(gameStatus);
     }
@@ -106,7 +109,11 @@ public class NumberBaseballGameController {
         return status;
     }
 
-    private void verifyChooseStatus(String status) {
+    private void changeGameStatus(final GameStatus status) {
+        gameStatus = status;
+    }
+
+    private void verifyChooseStatus(final String status) {
         if (!GameStatus.isChooseStatus(status)) {
             throw new IllegalInputValueException(MessageFormat.format("{0}이나 {1}의 숫자만 입력하세요.",
                 GameStatus.RESTART.getStatus(), GameStatus.TERMINATE.getStatus())

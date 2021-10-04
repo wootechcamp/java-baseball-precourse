@@ -1,13 +1,11 @@
 package baseball.domain;
 
 import baseball.exception.IllegalInputValueException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Pitcher {
 
     public Balls throwBalls(final String inputValue) {
-        return new Balls(parseBalls(split(inputValue)));
+        return Balls.convert(split(inputValue));
     }
 
     private String[] split(final String inputValue) {
@@ -18,25 +16,7 @@ public class Pitcher {
         return dividedValues;
     }
 
-    private List<Ball> parseBalls(final String[] inputValues) {
-        final List<Ball> balls = new ArrayList<>();
-
-        for (int index = 0; index < inputValues.length; index++) {
-            balls.add(new Ball(new BallPosition(index), new BallNumber(parseInt(inputValues[index]))));
-        }
-
-        return balls;
-    }
-
-    private int parseInt(final String inputValue) {
-        try {
-            return Integer.parseInt(inputValue);
-        } catch (NumberFormatException e) {
-            throw new IllegalInputValueException("숫자 만 입력해 주세요.");
-        }
-    }
-
-    private void verifyInputValuesLength(String[] dividedValues) {
+    private void verifyInputValuesLength(final String[] dividedValues) {
         if (dividedValues.length != Balls.BALLS_SIZE) {
             throw new IllegalInputValueException("3자리의 숫자를 입력해 주세요.");
         }

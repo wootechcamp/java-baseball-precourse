@@ -9,12 +9,12 @@ import java.util.StringJoiner;
 public class NumberBaseballGameViewer {
     private static final int DEFAULT_COUNT = 0;
 
-    public void printGameMessage(GameStatus gameStatus) {
+    public void printGameMessage(final GameStatus gameStatus) {
         System.out.println(gameStatus.getMessage());
     }
 
     public void printGameResult(final BallStatuses ballStatuses) {
-        if (BallStatus.NOTHING_BALL_STATUES.containsAll(ballStatuses.get())) {
+        if (ballStatuses.isAllNothing()) {
             System.out.println(BallStatus.NOTHING.getName());
             return;
         }
@@ -26,41 +26,46 @@ public class NumberBaseballGameViewer {
         int count = DEFAULT_COUNT;
 
         for (BallStatus status : ballStatuses.get()) {
-            count = increase(ballStatus, status, count);
+            count = increaseCount(ballStatus, status, count);
         }
 
-        if (isEmptyBallStatus(count)) {
+        if (isNotChangeCount(count)) {
             return "";
         }
 
         return MessageFormat.format("{0}{1}", count, ballStatus.getName());
     }
 
-    private String collectAll(BallStatuses ballStatuses) {
+    private String collectAll(final BallStatuses ballStatuses) {
         final StringJoiner result = new StringJoiner(" ");
 
-        final String strikeResult = collect(BallStatus.STRIKE, ballStatuses);
-        if (isNotBlank(strikeResult)) {
-            result.add(strikeResult);
-        }
-
-        final String ballResult = collect(BallStatus.BALL, ballStatuses);
-        if (isNotBlank(ballResult)) {
-            result.add(ballResult);
-        }
+        joinWith(result, collect(BallStatus.STRIKE, ballStatuses));
+        joinWith(result, collect(BallStatus.BALL, ballStatuses));
 
         return result.toString();
     }
 
-    private int increase(BallStatus source, BallStatus target, int count) {
-        return source.match(target) ? count + 1 : count;
+    private void joinWith(final StringJoiner result, final String ballStatusResult) {
+        if (!isNotBlank(ballStatusResult)) {
+            return;
+        }
+
+        result.add(ballStatusResult);
     }
 
-    private boolean isEmptyBallStatus(int count) {
+    private int increaseCount(final BallStatus source, final BallStatus target, final int count) {
+        if (!source.match(target)) {
+            return count;
+        }
+
+        return count + 1;
+    }
+
+    private boolean isNotChangeCount(final int count) {
         return count == DEFAULT_COUNT;
     }
 
-    private boolean isNotBlank(String result) {
+    private boolean isNotBlank(final String result) {
         return !result.trim().isEmpty();
     }
 }

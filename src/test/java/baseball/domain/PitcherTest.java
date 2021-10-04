@@ -11,7 +11,7 @@ class PitcherTest {
         final Pitcher pitcher = new Pitcher();
         final Balls playerBalls = pitcher.throwBalls("452");
 
-        assertThat(playerBalls.getBalls())
+        assertThat(playerBalls.get())
             .containsExactly(
                 new Ball(new BallPosition(0), new BallNumber(4)),
                 new Ball(new BallPosition(1), new BallNumber(5)),
