@@ -8,6 +8,7 @@ import baseball.enums.BallStatuses;
 import baseball.enums.GameStatus;
 import baseball.exception.BaseballRuntimeException;
 import baseball.exception.IllegalInputValueException;
+import java.text.MessageFormat;
 import nextstep.utils.Console;
 
 public class GameController {
@@ -25,17 +26,14 @@ public class GameController {
     }
 
     public void start() {
-        try {
+        prepareBalls();
+        while (GameStatus.isContinuable(gameStatus)) {
             round();
-        } catch (BaseballRuntimeException e) {
-            System.out.println(e.getMessage());
-            start();
         }
     }
 
     private void round() {
-        prepareBalls();
-        while (GameStatus.isContinuable(gameStatus)) {
+        try {
             viewer.printGameMessage(gameStatus);
 
             final Referee referee = new Referee();
@@ -45,6 +43,8 @@ public class GameController {
 
             completeGame(ballStatuses);
             chooseGameContinueOrNot();
+        } catch (BaseballRuntimeException e) {
+            System.out.println(e.getMessage());
         }
     }
 
@@ -87,6 +87,7 @@ public class GameController {
         }
 
         gameStatus = GameStatus.TERMINATE;
+        viewer.printGameMessage(gameStatus);
     }
 
     private String insertNumbers() {
@@ -96,8 +97,13 @@ public class GameController {
     private String insertStatus() {
         final String status = Console.readLine();
 
-        if (!GameStatus.isContinuableStatus(status)) {
-            throw new IllegalInputValueException("1이나 2의 숫자만 입력하세요.");
+        if (!GameStatus.isChooseStatus(status)) {
+            throw new IllegalInputValueException(
+                MessageFormat.format("{0}이나 {1}의 숫자만 입력하세요.",
+                    GameStatus.RESTART.getStatus(),
+                    GameStatus.TERMINATE.getStatus()
+                )
+            );
         }
 
         return status;

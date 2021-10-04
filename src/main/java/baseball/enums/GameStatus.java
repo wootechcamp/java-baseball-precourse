@@ -7,7 +7,7 @@ public enum GameStatus {
     START("-1", "숫자를 입력해주세요 : "),
     COMPLETE("0", "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요."),
     RESTART("1", "숫자를 입력해주세요 : "),
-    TERMINATE("2", "");
+    TERMINATE("2", "게임 끝");
 
     private final String status;
     private final String message;
@@ -29,7 +29,7 @@ public enum GameStatus {
         return EnumSet.of(START, RESTART).contains(status);
     }
 
-    public static boolean isContinuableStatus(String status) {
-        return Arrays.asList(START.getStatus(), RESTART.getStatus()).contains(status);
+    public static boolean isChooseStatus(String status) {
+        return Arrays.asList(RESTART.getStatus(), TERMINATE.getStatus()).contains(status);
     }
 }
