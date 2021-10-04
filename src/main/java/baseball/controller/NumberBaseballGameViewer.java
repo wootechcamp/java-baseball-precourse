@@ -39,17 +39,18 @@ public class NumberBaseballGameViewer {
     private String collectAll(final BallStatuses ballStatuses) {
         final StringJoiner result = new StringJoiner(" ");
 
-        final String strikeResult = collect(BallStatus.STRIKE, ballStatuses);
-        if (isNotBlank(strikeResult)) {
-            result.add(strikeResult);
-        }
-
-        final String ballResult = collect(BallStatus.BALL, ballStatuses);
-        if (isNotBlank(ballResult)) {
-            result.add(ballResult);
-        }
+        joinWith(result, collect(BallStatus.STRIKE, ballStatuses));
+        joinWith(result, collect(BallStatus.BALL, ballStatuses));
 
         return result.toString();
+    }
+
+    private void joinWith(final StringJoiner result, final String ballStatusResult) {
+        if (!isNotBlank(ballStatusResult)) {
+            return;
+        }
+
+        result.add(ballStatusResult);
     }
 
     private int increaseCount(final BallStatus source, final BallStatus target, final int count) {
