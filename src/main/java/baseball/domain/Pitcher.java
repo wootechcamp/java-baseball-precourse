@@ -32,13 +32,13 @@ public class Pitcher {
         try {
             return Integer.parseInt(inputValue);
         } catch (NumberFormatException e) {
-            throw new IllegalInputValueException("숫자를 입력해주세요.");
+            throw new IllegalInputValueException("숫자 만 입력해 주세요.");
         }
     }
 
     private void verifyInputValuesLength(String[] dividedValues) {
-        if (dividedValues.length > Balls.BALLS_SIZE) {
-            throw new IllegalInputValueException("3자리의 숫자를 입력해주세요.");
+        if (dividedValues.length != Balls.BALLS_SIZE) {
+            throw new IllegalInputValueException("3자리의 숫자를 입력해 주세요.");
         }
     }
 }

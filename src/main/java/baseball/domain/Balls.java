@@ -1,23 +1,23 @@
 package baseball.domain;
 
 import baseball.exception.CannotMakeBallsException;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Balls {
     public static final int BALLS_SIZE = BallPosition.ALLOW_POSITIONS.size();
 
     private int index;
-    private final List<Ball> balls;
+    private final List<Ball> balls = new ArrayList<>();
 
     public Balls(Ball ball) {
-        this.balls = Collections.singletonList(ball);
+        addBall(ball);
     }
 
     public Balls(final List<Ball> balls) {
         verifyBalls(balls);
 
-        this.balls = balls;
+        this.balls.addAll(balls);
         this.index = this.balls.size();
     }
 
