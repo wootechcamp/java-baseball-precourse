@@ -10,16 +10,6 @@ public class Balls {
     private int index;
     private final List<Ball> balls = new ArrayList<>();
 
-    public static Balls convert(final String[] inputValues) {
-        final List<Ball> balls = new ArrayList<>();
-
-        for (int index = 0; index < inputValues.length; index++) {
-            balls.add(new Ball(new BallPosition(index), BallNumber.convert(inputValues[index])));
-        }
-
-        return new Balls(balls);
-    }
-
     public Balls(final Ball ball) {
         addBall(ball);
     }
@@ -29,6 +19,16 @@ public class Balls {
 
         this.balls.addAll(balls);
         this.index = this.balls.size();
+    }
+
+    public static Balls convert(final String[] inputValues) {
+        final List<Ball> balls = new ArrayList<>();
+
+        for (int index = 0; index < inputValues.length; index++) {
+            balls.add(new Ball(new BallPosition(index), BallNumber.convert(inputValues[index])));
+        }
+
+        return new Balls(balls);
     }
 
     public int getIndex() {
