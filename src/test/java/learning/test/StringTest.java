@@ -1,10 +1,8 @@
 package learning.test;
 
+import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 @DisplayName("학습테스트 - String")
 public class StringTest {
@@ -22,8 +20,8 @@ public class StringTest {
 
         //then
         assertThat(dividedValues)
-                .as("`,`로 split 했을 때 1과 2로 잘 분리 되는가?")
-                .contains("1", "2");
+            .as("`,`로 split 했을 때 1과 2로 잘 분리 되는가?")
+            .contains("1", "2");
     }
 
     @Test
@@ -37,8 +35,8 @@ public class StringTest {
 
         //then
         assertThat(dividedValues)
-                .as("`,`로 split 했을 때 1만 포함하는가?")
-                .containsExactly("1");
+            .as("`,`로 split 했을 때 1만 포함하는가?")
+            .containsExactly("1");
     }
 
     @Test
@@ -54,8 +52,8 @@ public class StringTest {
 
         //then
         assertThat(substring)
-                .as("`()`을 제거하고 1,2를 반환하는가?")
-                .isEqualTo("1,2");
+            .as("`()`을 제거하고 1,2를 반환하는가?")
+            .isEqualTo("1,2");
     }
 
     @Test
@@ -67,7 +65,7 @@ public class StringTest {
 
         //when, then
         assertThatExceptionOfType(StringIndexOutOfBoundsException.class)
-                .isThrownBy(() -> abc.charAt(indexOutOfBounds))
-                .as("특정 위치의 문자를 가져올 때 위치 값을 벗어나면 StringIndexOutOfBoundsException이 발생하는가?");
+            .isThrownBy(() -> abc.charAt(indexOutOfBounds))
+            .as("특정 위치의 문자를 가져올 때 위치 값을 벗어나면 StringIndexOutOfBoundsException이 발생하는가?");
     }
 }

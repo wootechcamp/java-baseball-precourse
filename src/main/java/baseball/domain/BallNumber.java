@@ -1,7 +1,6 @@
 package baseball.domain;
 
 import baseball.exception.BallNumberOutOfRangeException;
-
 import java.util.Objects;
 
 public class BallNumber {
@@ -28,9 +27,13 @@ public class BallNumber {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof BallNumber)) return false;
-        BallNumber that = (BallNumber) o;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof BallNumber)) {
+            return false;
+        }
+        BallNumber that = (BallNumber)o;
         return number == that.number;
     }
 

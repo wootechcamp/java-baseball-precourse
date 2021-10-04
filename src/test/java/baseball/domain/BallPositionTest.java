@@ -1,10 +1,8 @@
 package baseball.domain;
 
+import static org.assertj.core.api.Assertions.*;
 import baseball.exception.NotAllowPositionException;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
-import static org.assertj.core.api.Assertions.assertThatNoException;
 
 class BallPositionTest {
 

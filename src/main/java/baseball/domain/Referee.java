@@ -22,7 +22,8 @@ public class Referee {
         final BallPosition computerBallPosition = computerBall.getBallPosition();
         final BallNumber computerBallNumber = computerBall.getBallNumber();
 
-        return Objects.equals(computerBallPosition, playerBallPosition) && Objects.equals(computerBallNumber, playerBall.getBallNumber());
+        return Objects.equals(computerBallPosition, playerBallPosition) && Objects.equals(computerBallNumber,
+            playerBall.getBallNumber());
     }
 
     private boolean isBall(final Balls computerBalls, final Ball playerBall) {

@@ -11,7 +11,8 @@ public class CannotMakeBallsException extends BaseballRuntimeException {
         super(message, cause);
     }
 
-    public CannotMakeBallsException(final Throwable cause, final boolean enableSuppression, final boolean writableStackTrace) {
+    public CannotMakeBallsException(final Throwable cause, final boolean enableSuppression,
+        final boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 }

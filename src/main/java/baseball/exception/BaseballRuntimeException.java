@@ -20,7 +20,8 @@ public class BaseballRuntimeException extends RuntimeException {
         super(String.format(ERROR_MESSAGE_FORMAT, defaultMessage), cause);
     }
 
-    public BaseballRuntimeException(final String message, final Throwable cause, final boolean enableSuppression, final boolean writableStackTrace) {
+    public BaseballRuntimeException(final String message, final Throwable cause, final boolean enableSuppression,
+        final boolean writableStackTrace) {
         super(String.format(ERROR_MESSAGE_FORMAT, message), cause, enableSuppression, writableStackTrace);
     }
 }

@@ -1,7 +1,6 @@
 package baseball.domain;
 
 import baseball.exception.NotAllowPositionException;
-
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Objects;
@@ -30,9 +29,13 @@ public class BallPosition {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof BallPosition)) return false;
-        BallPosition that = (BallPosition) o;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof BallPosition)) {
+            return false;
+        }
+        BallPosition that = (BallPosition)o;
         return position == that.position;
     }
 
