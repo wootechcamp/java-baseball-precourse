@@ -1,4 +1,4 @@
-package baseball.domain;
+package baseball.enums;
 
 public enum BallStatus {
     BALL("볼"),

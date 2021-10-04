@@ -1,6 +1,7 @@
 package baseball.domain;
 
 import static org.assertj.core.api.Assertions.*;
+import baseball.enums.BallStatus;
 import java.util.Arrays;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

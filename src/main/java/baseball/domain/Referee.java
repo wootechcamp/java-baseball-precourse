@@ -1,5 +1,6 @@
 package baseball.domain;
 
+import baseball.enums.BallStatus;
 import java.util.Objects;
 
 public class Referee {
