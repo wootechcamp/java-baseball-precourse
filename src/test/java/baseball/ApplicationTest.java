@@ -1,7 +1,7 @@
 package baseball;
 
-import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.Mockito.mockStatic;
 import nextstep.test.NSTest;
 import nextstep.utils.Randoms;
 import org.junit.jupiter.api.AfterEach;
@@ -33,7 +33,7 @@ public class ApplicationTest extends NSTest {
                 .thenReturn(7, 1, 3)
                 .thenReturn(5, 8, 9);
             run("713", "1", "597", "589", "2");
-            verify("3스트라이크", "1스트라이크 1볼", "3스트라이크", "게임 끝");
+            verify("3스트라이크", "게임 끝", "1스트라이크 1볼");
         }
     }
 
