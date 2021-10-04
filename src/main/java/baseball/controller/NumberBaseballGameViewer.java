@@ -3,11 +3,17 @@ package baseball.controller;
 import baseball.enums.BallStatus;
 import baseball.enums.BallStatuses;
 import baseball.enums.GameStatus;
+import baseball.exception.BaseballRuntimeException;
+
 import java.text.MessageFormat;
 import java.util.StringJoiner;
 
 public class NumberBaseballGameViewer {
     private static final int DEFAULT_COUNT = 0;
+
+    public void printErrorMessage(BaseballRuntimeException e) {
+        System.out.println(e.getMessage());
+    }
 
     public void printGameMessage(final GameStatus gameStatus) {
         System.out.println(gameStatus.getMessage());
