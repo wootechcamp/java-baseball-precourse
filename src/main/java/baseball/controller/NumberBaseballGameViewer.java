@@ -13,7 +13,7 @@ public class NumberBaseballGameViewer {
         System.out.println(gameStatus.getMessage());
     }
 
-    public void render(final BallStatuses ballStatuses) {
+    public void printGameResult(final BallStatuses ballStatuses) {
         if (BallStatus.NOTHING_BALL_STATUES.containsAll(ballStatuses.get())) {
             System.out.println(BallStatus.NOTHING.getName());
             return;

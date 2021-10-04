@@ -42,7 +42,7 @@ public class NumberBaseballGameController {
 
             final BallStatuses ballStatuses = referee.judge(computerBalls, pitcher.throwBalls(insertNumbers()));
 
-            viewer.render(ballStatuses);
+            viewer.printGameResult(ballStatuses);
 
             completeGame(ballStatuses);
             chooseGameContinueOrNot();
