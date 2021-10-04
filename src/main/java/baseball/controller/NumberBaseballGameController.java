@@ -30,6 +30,7 @@ public class NumberBaseballGameController {
 
     public void start() {
         prepareBalls();
+
         while (GameStatus.isContinuable(gameStatus)) {
             round();
         }
@@ -70,10 +71,6 @@ public class NumberBaseballGameController {
         terminateGame(status);
     }
 
-    private void prepareBalls() {
-        computerBalls = computer.prepareBalls();
-    }
-
     private void restartGame(final String status) {
         if (!GameStatus.RESTART.getStatus().equals(status)) {
             return;
@@ -89,7 +86,12 @@ public class NumberBaseballGameController {
         }
 
         gameStatus = GameStatus.TERMINATE;
+
         viewer.printGameMessage(gameStatus);
+    }
+
+    private void prepareBalls() {
+        computerBalls = computer.prepareBalls();
     }
 
     private String insertNumbers() {
@@ -99,15 +101,16 @@ public class NumberBaseballGameController {
     private String insertStatus() {
         final String status = Console.readLine();
 
-        if (!GameStatus.isChooseStatus(status)) {
-            throw new IllegalInputValueException(
-                MessageFormat.format("{0}이나 {1}의 숫자만 입력하세요.",
-                    GameStatus.RESTART.getStatus(),
-                    GameStatus.TERMINATE.getStatus()
-                )
-            );
-        }
+        verifyChooseStatus(status);
 
         return status;
+    }
+
+    private void verifyChooseStatus(String status) {
+        if (!GameStatus.isChooseStatus(status)) {
+            throw new IllegalInputValueException(MessageFormat.format("{0}이나 {1}의 숫자만 입력하세요.",
+                GameStatus.RESTART.getStatus(), GameStatus.TERMINATE.getStatus())
+            );
+        }
     }
 }
