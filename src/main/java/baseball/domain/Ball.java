@@ -20,11 +20,11 @@ public class Ball {
     }
 
     @Override
-    public boolean equals(final Object o) {
+    public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Ball)) return false;
         Ball ball = (Ball) o;
-        return number == ball.number;
+        return number.equals(ball.number);
     }
 
     @Override

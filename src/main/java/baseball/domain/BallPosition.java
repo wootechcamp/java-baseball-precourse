@@ -31,7 +31,7 @@ public class BallPosition {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof BallPosition)) return false;
         BallPosition that = (BallPosition) o;
         return position == that.position;
     }
