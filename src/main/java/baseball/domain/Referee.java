@@ -31,14 +31,14 @@ public class Referee {
     }
 
     private boolean isStrike(final Balls computerBalls, final Ball pitcherBall) {
-        final BallPosition pitcherBallPosition = pitcherBall.getBallPosition();
+        final BallPosition pitcherBallPosition = pitcherBall.getPosition();
 
         final Ball computerBall = computerBalls.getBalls().get(pitcherBallPosition.get());
-        final BallPosition computerBallPosition = computerBall.getBallPosition();
-        final BallNumber computerBallNumber = computerBall.getBallNumber();
+        final BallPosition computerBallPosition = computerBall.getPosition();
+        final BallNumber computerBallNumber = computerBall.getNumber();
 
         return Objects.equals(computerBallPosition, pitcherBallPosition) && Objects.equals(computerBallNumber,
-            pitcherBall.getBallNumber());
+            pitcherBall.getNumber());
     }
 
     private boolean isBall(final Balls computerBalls, final Ball pitcherBall) {

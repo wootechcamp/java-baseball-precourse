@@ -11,11 +11,11 @@ public class Ball {
         this.number = number;
     }
 
-    public BallPosition getBallPosition() {
+    public BallPosition getPosition() {
         return position;
     }
 
-    public BallNumber getBallNumber() {
+    public BallNumber getNumber() {
         return number;
     }
 
