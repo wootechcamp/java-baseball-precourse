@@ -17,6 +17,14 @@ public enum GameStatus {
         this.message = message;
     }
 
+    public static boolean isContinuable(final GameStatus status) {
+        return EnumSet.of(START, RESTART).contains(status);
+    }
+
+    public static boolean isChooseStatus(final String status) {
+        return Arrays.asList(RESTART.getStatus(), TERMINATE.getStatus()).contains(status);
+    }
+
     public String getStatus() {
         return status;
     }
@@ -25,11 +33,11 @@ public enum GameStatus {
         return message;
     }
 
-    public static boolean isContinuable(final GameStatus status) {
-        return EnumSet.of(START, RESTART).contains(status);
+    public boolean match(final GameStatus gameStatus) {
+        return this.equals(gameStatus);
     }
 
-    public static boolean isChooseStatus(final String status) {
-        return Arrays.asList(RESTART.getStatus(), TERMINATE.getStatus()).contains(status);
+    public boolean match(final String gameStatus) {
+        return status.equals(gameStatus);
     }
 }

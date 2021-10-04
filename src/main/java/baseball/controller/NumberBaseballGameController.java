@@ -45,7 +45,6 @@ public class NumberBaseballGameController {
             viewer.printGameResult(ballStatuses);
 
             completeGame(ballStatuses);
-            chooseGameContinueOrNot();
         } catch (BaseballRuntimeException e) {
             System.out.println(e.getMessage());
         }
@@ -56,15 +55,18 @@ public class NumberBaseballGameController {
             return;
         }
 
-        gameStatus = GameStatus.COMPLETE;
+        changeGameStatus(GameStatus.COMPLETE);
+
+        chooseGameContinueOrNot();
     }
 
     private void chooseGameContinueOrNot() {
-        if (!GameStatus.COMPLETE.equals(gameStatus)) {
+        if (!GameStatus.COMPLETE.match(gameStatus)) {
             return;
         }
 
         viewer.printGameMessage(gameStatus);
+
         final String status = insertStatus();
 
         restartGame(status);
@@ -72,11 +74,12 @@ public class NumberBaseballGameController {
     }
 
     private void restartGame(final String status) {
-        if (!GameStatus.RESTART.getStatus().equals(status)) {
+        if (!GameStatus.RESTART.match(status)) {
             return;
         }
 
-        gameStatus = GameStatus.RESTART;
+        changeGameStatus(GameStatus.RESTART);
+
         prepareBalls();
     }
 
@@ -85,7 +88,7 @@ public class NumberBaseballGameController {
             return;
         }
 
-        gameStatus = GameStatus.TERMINATE;
+        changeGameStatus(GameStatus.TERMINATE);
 
         viewer.printGameMessage(gameStatus);
     }
@@ -104,6 +107,10 @@ public class NumberBaseballGameController {
         verifyChooseStatus(status);
 
         return status;
+    }
+
+    private void changeGameStatus(final GameStatus status) {
+        gameStatus = status;
     }
 
     private void verifyChooseStatus(final String status) {
