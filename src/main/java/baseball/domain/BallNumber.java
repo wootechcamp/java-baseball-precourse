@@ -22,14 +22,14 @@ public class BallNumber {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) {
             return true;
         }
         if (!(o instanceof BallNumber)) {
             return false;
         }
-        BallNumber that = (BallNumber)o;
+        final BallNumber that = (BallNumber)o;
         return number == that.number;
     }
 

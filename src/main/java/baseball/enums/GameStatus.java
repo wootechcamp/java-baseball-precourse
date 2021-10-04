@@ -12,7 +12,7 @@ public enum GameStatus {
     private final String status;
     private final String message;
 
-    GameStatus(String status, String message) {
+    GameStatus(final String status, final String message) {
         this.status = status;
         this.message = message;
     }
@@ -25,11 +25,11 @@ public enum GameStatus {
         return message;
     }
 
-    public static boolean isContinuable(GameStatus status) {
+    public static boolean isContinuable(final GameStatus status) {
         return EnumSet.of(START, RESTART).contains(status);
     }
 
-    public static boolean isChooseStatus(String status) {
+    public static boolean isChooseStatus(final String status) {
         return Arrays.asList(RESTART.getStatus(), TERMINATE.getStatus()).contains(status);
     }
 }

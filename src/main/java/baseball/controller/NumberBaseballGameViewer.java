@@ -9,7 +9,7 @@ import java.util.StringJoiner;
 public class NumberBaseballGameViewer {
     private static final int DEFAULT_COUNT = 0;
 
-    public void printGameMessage(GameStatus gameStatus) {
+    public void printGameMessage(final GameStatus gameStatus) {
         System.out.println(gameStatus.getMessage());
     }
 
@@ -36,7 +36,7 @@ public class NumberBaseballGameViewer {
         return MessageFormat.format("{0}{1}", count, ballStatus.getName());
     }
 
-    private String collectAll(BallStatuses ballStatuses) {
+    private String collectAll(final BallStatuses ballStatuses) {
         final StringJoiner result = new StringJoiner(" ");
 
         final String strikeResult = collect(BallStatus.STRIKE, ballStatuses);
@@ -52,15 +52,15 @@ public class NumberBaseballGameViewer {
         return result.toString();
     }
 
-    private int increase(BallStatus source, BallStatus target, int count) {
+    private int increase(final BallStatus source, final BallStatus target, final int count) {
         return source.match(target) ? count + 1 : count;
     }
 
-    private boolean isEmptyBallStatus(int count) {
+    private boolean isEmptyBallStatus(final int count) {
         return count == DEFAULT_COUNT;
     }
 
-    private boolean isNotBlank(String result) {
+    private boolean isNotBlank(final String result) {
         return !result.trim().isEmpty();
     }
 }

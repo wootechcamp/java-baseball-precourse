@@ -7,7 +7,7 @@ import java.util.List;
 public class BallStatuses {
     private final List<BallStatus> ballStatuses;
 
-    public BallStatuses(List<BallStatus> ballStatuses) {
+    public BallStatuses(final List<BallStatus> ballStatuses) {
         verifyBallStatuses(ballStatuses);
 
         this.ballStatuses = ballStatuses;

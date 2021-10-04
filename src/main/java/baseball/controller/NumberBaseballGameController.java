@@ -51,7 +51,7 @@ public class NumberBaseballGameController {
         }
     }
 
-    private void completeGame(BallStatuses ballStatuses) {
+    private void completeGame(final BallStatuses ballStatuses) {
         if (!ballStatuses.isCompleted()) {
             return;
         }
@@ -106,7 +106,7 @@ public class NumberBaseballGameController {
         return status;
     }
 
-    private void verifyChooseStatus(String status) {
+    private void verifyChooseStatus(final String status) {
         if (!GameStatus.isChooseStatus(status)) {
             throw new IllegalInputValueException(MessageFormat.format("{0}이나 {1}의 숫자만 입력하세요.",
                 GameStatus.RESTART.getStatus(), GameStatus.TERMINATE.getStatus())

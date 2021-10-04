@@ -10,7 +10,7 @@ public class Balls {
     private int index;
     private final List<Ball> balls = new ArrayList<>();
 
-    public Balls(Ball ball) {
+    public Balls(final Ball ball) {
         addBall(ball);
     }
 
