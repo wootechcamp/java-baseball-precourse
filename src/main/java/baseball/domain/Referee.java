@@ -33,7 +33,7 @@ public class Referee {
     private boolean isStrike(final Balls computerBalls, final Ball pitcherBall) {
         final BallPosition pitcherBallPosition = pitcherBall.getBallPosition();
 
-        final Ball computerBall = computerBalls.getBalls().get(pitcherBallPosition.getPosition());
+        final Ball computerBall = computerBalls.getBalls().get(pitcherBallPosition.get());
         final BallPosition computerBallPosition = computerBall.getBallPosition();
         final BallNumber computerBallNumber = computerBall.getBallNumber();
 

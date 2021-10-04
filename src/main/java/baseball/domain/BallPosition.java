@@ -17,7 +17,7 @@ public class BallPosition {
         this.position = position;
     }
 
-    public int getPosition() {
+    public int get() {
         return position;
     }
 

@@ -7,6 +7,6 @@ public class RandomNumberGenerator implements NumberGenerator {
 
     @Override
     public int generate() {
-        return Randoms.pickNumberInRange(BallNumber.MINIMUM_BALL, BallNumber.MAXIMUM_BALL);
+        return Randoms.pickNumberInRange(BallNumber.MINIMUM_NUMBER, BallNumber.MAXIMUM_NUMBER);
     }
 }

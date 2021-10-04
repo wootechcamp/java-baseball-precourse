@@ -4,8 +4,8 @@ import baseball.exception.BallNumberOutOfRangeException;
 import java.util.Objects;
 
 public class BallNumber {
-    public static final int MINIMUM_BALL = 1;
-    public static final int MAXIMUM_BALL = 9;
+    public static final int MINIMUM_NUMBER = 1;
+    public static final int MAXIMUM_NUMBER = 9;
 
     private final int number;
 
@@ -15,12 +15,8 @@ public class BallNumber {
         this.number = number;
     }
 
-    public int getNumber() {
-        return number;
-    }
-
     private void verifyBallNumber(final int number) {
-        if (!(number >= MINIMUM_BALL && number <= MAXIMUM_BALL)) {
+        if (!(number >= MINIMUM_NUMBER && number <= MAXIMUM_NUMBER)) {
             throw new BallNumberOutOfRangeException();
         }
     }

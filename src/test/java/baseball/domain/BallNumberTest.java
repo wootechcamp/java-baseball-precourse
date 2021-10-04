@@ -14,7 +14,7 @@ class BallNumberTest {
     }
 
     @ParameterizedTest(name = "[{index}] 정해진 범위를 벗어나는 숫자로 야구공숫자를 만드려고하면 예외가 발생한다 | {argumentsWithNames}")
-    @ValueSource(ints = {BallNumber.MINIMUM_BALL - 1, BallNumber.MAXIMUM_BALL + 1})
+    @ValueSource(ints = {BallNumber.MINIMUM_NUMBER - 1, BallNumber.MAXIMUM_NUMBER + 1})
     void 정해진_범위를_벗어나는_숫자로_야구공숫자를_만드려고하면_예외가_발생한다(int number) {
         assertThatExceptionOfType(BallNumberOutOfRangeException.class).isThrownBy(() -> new BallNumber(number));
     }
