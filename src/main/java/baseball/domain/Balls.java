@@ -1,7 +1,6 @@
 package baseball.domain;
 
 import baseball.exception.CannotMakeBallsException;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
