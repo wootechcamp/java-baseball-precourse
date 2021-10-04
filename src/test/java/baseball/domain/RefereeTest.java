@@ -1,6 +1,7 @@
 package baseball.domain;
 
 import static org.assertj.core.api.Assertions.*;
+import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 class RefereeTest {
@@ -10,7 +11,7 @@ class RefereeTest {
         final Ball firstBall = new Ball(new BallPosition(0), new BallNumber(1));
         final Ball secondBall = new Ball(new BallPosition(1), new BallNumber(4));
         final Ball thirdBall = new Ball(new BallPosition(2), new BallNumber(6));
-        final Balls computerBalls = new Balls(firstBall, secondBall, thirdBall);
+        final Balls computerBalls = new Balls(Arrays.asList(firstBall, secondBall, thirdBall));
 
         final Ball playerBall = new Ball(new BallPosition(0), new BallNumber(1));
 
@@ -25,7 +26,7 @@ class RefereeTest {
         final Ball firstBall = new Ball(new BallPosition(0), new BallNumber(1));
         final Ball secondBall = new Ball(new BallPosition(1), new BallNumber(4));
         final Ball thirdBall = new Ball(new BallPosition(2), new BallNumber(6));
-        final Balls computerBalls = new Balls(firstBall, secondBall, thirdBall);
+        final Balls computerBalls = new Balls(Arrays.asList(firstBall, secondBall, thirdBall));
 
         final Ball playerBall = new Ball(new BallPosition(0), new BallNumber(4));
 
@@ -40,7 +41,7 @@ class RefereeTest {
         final Ball firstBall = new Ball(new BallPosition(0), new BallNumber(1));
         final Ball secondBall = new Ball(new BallPosition(1), new BallNumber(4));
         final Ball thirdBall = new Ball(new BallPosition(2), new BallNumber(6));
-        final Balls computerBalls = new Balls(firstBall, secondBall, thirdBall);
+        final Balls computerBalls = new Balls(Arrays.asList(firstBall, secondBall, thirdBall));
 
         final Ball playerBall = new Ball(new BallPosition(0), new BallNumber(7));
 

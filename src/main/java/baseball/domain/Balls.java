@@ -1,8 +1,8 @@
 package baseball.domain;
 
 import baseball.exception.CannotMakeBallsException;
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Balls {
@@ -11,10 +11,14 @@ public class Balls {
     private int index;
     private final List<Ball> balls;
 
-    public Balls(final Ball... balls) {
+    public Balls(Ball ball) {
+        this.balls = Collections.singletonList(ball);
+    }
+
+    public Balls(final List<Ball> balls) {
         verifyBalls(balls);
 
-        this.balls = new ArrayList<>(Arrays.asList(balls));
+        this.balls = balls;
         this.index = this.balls.size();
     }
 
@@ -39,8 +43,8 @@ public class Balls {
         this.index += 1;
     }
 
-    private void verifyBalls(final Ball... balls) {
-        if (balls.length > BALLS_SIZE) {
+    private void verifyBalls(final List<Ball> balls) {
+        if (balls.size() > BALLS_SIZE) {
             throw new CannotMakeBallsException();
         }
     }

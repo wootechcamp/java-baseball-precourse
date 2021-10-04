@@ -2,6 +2,8 @@ package baseball.domain;
 
 import static org.assertj.core.api.Assertions.*;
 import baseball.exception.CannotMakeBallsException;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 class BallsTest {
@@ -9,10 +11,10 @@ class BallsTest {
     @Test
     void 정해진_양만큼의_야구공그룹을_만들_수_있다() {
         assertThatNoException().isThrownBy(() -> {
-            Ball[] balls = new Ball[Balls.BALLS_SIZE];
+            final List<Ball> balls = new ArrayList<>();
 
             for (int index = 0; index < Balls.BALLS_SIZE; index++) {
-                balls[index] = new Ball(new BallPosition(index), new BallNumber(index + 1));
+                balls.add(new Ball(new BallPosition(index), new BallNumber(index + 1)));
             }
 
             new Balls(balls);
@@ -24,11 +26,11 @@ class BallsTest {
         assertThatExceptionOfType(CannotMakeBallsException.class).isThrownBy(() -> {
             final int allowPositionsSize = BallPosition.ALLOW_POSITIONS.size() - 1;
             final int overflowBallGroupsSize = Balls.BALLS_SIZE + 1;
-            Ball[] balls = new Ball[overflowBallGroupsSize];
+            final List<Ball> balls = new ArrayList<>();
 
             for (int index = 0; index < overflowBallGroupsSize; index++) {
                 final int allowPosition = Math.min(index, allowPositionsSize);
-                balls[index] = new Ball(new BallPosition(allowPosition), new BallNumber(index + 1));
+                balls.add(new Ball(new BallPosition(allowPosition), new BallNumber(index + 1)));
             }
 
             new Balls(balls);
