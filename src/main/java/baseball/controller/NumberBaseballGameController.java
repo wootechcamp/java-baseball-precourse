@@ -15,11 +15,14 @@ public class NumberBaseballGameController {
     private static GameStatus gameStatus = GameStatus.START;
     private static Balls computerBalls;
 
+    private final Referee referee;
     private final Computer computer;
     private final Pitcher pitcher;
     private final NumberBaseballGameViewer viewer;
 
-    public NumberBaseballGameController(Computer computer, Pitcher pitcher, NumberBaseballGameViewer viewer) {
+    public NumberBaseballGameController(final Referee referee, final Computer computer, final Pitcher pitcher,
+        final NumberBaseballGameViewer viewer) {
+        this.referee = referee;
         this.computer = computer;
         this.pitcher = pitcher;
         this.viewer = viewer;
@@ -36,7 +39,6 @@ public class NumberBaseballGameController {
         try {
             viewer.printGameMessage(gameStatus);
 
-            final Referee referee = new Referee();
             final BallStatuses ballStatuses = referee.judge(computerBalls, pitcher.throwBalls(insertNumbers()));
 
             viewer.render(ballStatuses);
