@@ -9,12 +9,4 @@ public class IllegalBallStatusesStateException extends BaseballRuntimeException 
     public IllegalBallStatusesStateException() {
         super(message);
     }
-
-    public IllegalBallStatusesStateException(Throwable cause) {
-        super(message, cause);
-    }
-
-    public IllegalBallStatusesStateException(Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
-    }
 }

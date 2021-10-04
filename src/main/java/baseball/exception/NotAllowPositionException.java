@@ -6,13 +6,4 @@ public class NotAllowPositionException extends BaseballRuntimeException {
     public NotAllowPositionException() {
         super(message);
     }
-
-    public NotAllowPositionException(final Throwable cause) {
-        super(message, cause);
-    }
-
-    public NotAllowPositionException(final Throwable cause, final boolean enableSuppression,
-        final boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
-    }
 }
