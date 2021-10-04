@@ -9,7 +9,6 @@ import baseball.domain.Referee;
 
 public class Application {
     public static void main(String[] args) {
-        // TODO 숫자 야구 게임 구현
         final NumberBaseballGameController controller = new NumberBaseballGameController(
             new Referee(),
             new Computer(new RandomNumberGenerator()),
