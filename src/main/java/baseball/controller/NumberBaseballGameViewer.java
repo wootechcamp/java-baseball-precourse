@@ -14,7 +14,7 @@ public class NumberBaseballGameViewer {
     }
 
     public void printGameResult(final BallStatuses ballStatuses) {
-        if (BallStatus.NOTHING_BALL_STATUES.containsAll(ballStatuses.get())) {
+        if (ballStatuses.isAllNothing()) {
             System.out.println(BallStatus.NOTHING.getName());
             return;
         }
@@ -26,10 +26,10 @@ public class NumberBaseballGameViewer {
         int count = DEFAULT_COUNT;
 
         for (BallStatus status : ballStatuses.get()) {
-            count = increase(ballStatus, status, count);
+            count = increaseCount(ballStatus, status, count);
         }
 
-        if (isEmptyBallStatus(count)) {
+        if (isNotChangeCount(count)) {
             return "";
         }
 
@@ -52,11 +52,15 @@ public class NumberBaseballGameViewer {
         return result.toString();
     }
 
-    private int increase(final BallStatus source, final BallStatus target, final int count) {
-        return source.match(target) ? count + 1 : count;
+    private int increaseCount(final BallStatus source, final BallStatus target, final int count) {
+        if (!source.match(target)) {
+            return count;
+        }
+
+        return count + 1;
     }
 
-    private boolean isEmptyBallStatus(final int count) {
+    private boolean isNotChangeCount(final int count) {
         return count == DEFAULT_COUNT;
     }
 
