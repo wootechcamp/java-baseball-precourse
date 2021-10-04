@@ -1,6 +1,6 @@
 package baseball.domain;
 
-import baseball.exception.CannotMakeBallsException;
+import baseball.exception.BallsSizeOutOfIndexException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +44,7 @@ public class Balls {
 
     private void verifyBalls(final List<Ball> balls) {
         if (balls.size() > BALLS_SIZE) {
-            throw new CannotMakeBallsException();
+            throw new BallsSizeOutOfIndexException();
         }
     }
 
