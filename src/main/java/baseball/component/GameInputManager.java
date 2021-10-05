@@ -14,25 +14,19 @@ public class GameInputManager {
     }
 
     public String insertNumbers(final GameStatus gameStatus) {
-        String numbers;
-        do {
-            outputManager.printGameMessage(gameStatus);
-            numbers = Console.readLine();
-
-            verifyInsertNumbers(numbers);
-        } while (isAlreadyExistNumber(numbers));
-
-        return numbers;
+        outputManager.printGameMessage(gameStatus);
+        return Console.readLine();
     }
 
     public String insertStatus(final GameStatus gameStatus) {
-        String status;
-        do {
-            outputManager.printGameMessage(gameStatus);
-            status = Console.readLine();
+        outputManager.printGameMessage(gameStatus);
 
+        String status = Console.readLine();
+
+        while (!GameStatus.isChooseStatus(status)) {
             verifyInsertStatus(status);
-        } while (!GameStatus.isChooseStatus(status));
+            status = Console.readLine();
+        }
 
         return status;
     }
@@ -48,36 +42,5 @@ public class GameInputManager {
         } catch (IllegalInputValueException e) {
             outputManager.printErrorMessage(e);
         }
-    }
-
-    private void verifyInsertNumbers(final String numbers) {
-        if (!isAlreadyExistNumber(numbers)) {
-            return;
-        }
-
-        try {
-            throw new IllegalInputValueException("같은 숫자는 입력 할 수 없습니다.");
-        } catch (IllegalInputValueException e) {
-            outputManager.printErrorMessage(e);
-        }
-    }
-
-    private boolean isAlreadyExistNumber(String numbers) {
-        boolean isAlreadyExist = false;
-        final String[] dividedNumbers = numbers.split("");
-
-        for (int index = 0; index < dividedNumbers.length; index++) {
-            isAlreadyExist |= hasSameNumber(dividedNumbers, index);
-        }
-
-        return isAlreadyExist;
-    }
-
-    private boolean hasSameNumber(String[] dividedNumbers, int index) {
-        if (index == dividedNumbers.length - 1) {
-            return false;
-        }
-
-        return dividedNumbers[index].equals(dividedNumbers[index + 1]);
     }
 }

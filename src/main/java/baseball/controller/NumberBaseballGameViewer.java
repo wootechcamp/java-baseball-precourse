@@ -7,8 +7,6 @@ import baseball.enums.GameStatus;
 import baseball.exception.BaseballRuntimeException;
 
 public class NumberBaseballGameViewer {
-    private static final int DEFAULT_COUNT = 0;
-
     private final GameInputManager inputManager;
     private final GameOutputManager outputManager;
 
@@ -25,15 +23,11 @@ public class NumberBaseballGameViewer {
         return inputManager.insertStatus(gameStatus);
     }
 
-    public void printErrorMessage(BaseballRuntimeException e) {
-        outputManager.printErrorMessage(e);
-    }
-
-    public void printGameMessage(final GameStatus gameStatus) {
-        outputManager.printGameMessage(gameStatus);
-    }
-
     public void printGameResult(final BallStatuses ballStatuses) {
         outputManager.printGameResult(ballStatuses);
+    }
+
+    public void printErrorMessage(BaseballRuntimeException e) {
+        outputManager.printErrorMessage(e);
     }
 }
