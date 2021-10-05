@@ -19,23 +19,23 @@ public class NumberBaseballGameController {
 
     public NumberBaseballGameController(final Referee referee, final Computer computer, final Pitcher pitcher,
         final NumberBaseballGameViewer viewer) {
-        init();
-
         this.referee = referee;
         this.computer = computer;
         this.pitcher = pitcher;
         this.viewer = viewer;
+
+        init();
     }
 
     public void start() {
-        prepareBalls();
-
-        while (GameStatus.isContinuable(gameStatus)) {
+        while (gameStatus.isContinuable()) {
             round();
         }
     }
 
     private void init() {
+        prepareBalls();
+
         changeGameStatus(GameStatus.START);
     }
 

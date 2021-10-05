@@ -17,8 +17,8 @@ public enum GameStatus {
         this.message = message;
     }
 
-    public static boolean isContinuable(final GameStatus status) {
-        return EnumSet.of(START, RESTART).contains(status);
+    public boolean isContinuable() {
+        return EnumSet.of(START, RESTART).contains(this);
     }
 
     public static boolean isChooseStatus(final String status) {
