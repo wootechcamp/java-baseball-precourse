@@ -26,7 +26,7 @@ public class Pitcher {
         }
     }
 
-    private boolean isNotEqualBallSize(String[] dividedValues) {
+    private boolean isNotEqualBallSize(final String[] dividedValues) {
         return dividedValues.length != Balls.BALLS_SIZE;
     }
 
@@ -34,13 +34,13 @@ public class Pitcher {
         boolean isAlreadyExist = false;
 
         for (int index = 0; index < dividedValues.length; index++) {
-            isAlreadyExist |= hasSameNumber(dividedValues, index);
+            isAlreadyExist |= hasSameNumber(index, dividedValues);
         }
 
         return isAlreadyExist;
     }
 
-    private boolean hasSameNumber(String[] dividedNumbers, int index) {
+    private boolean hasSameNumber(final int index, final String[] dividedNumbers) {
         if (index == dividedNumbers.length - 1) {
             return false;
         }
