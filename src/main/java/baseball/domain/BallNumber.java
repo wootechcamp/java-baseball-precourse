@@ -10,18 +10,18 @@ public class BallNumber {
 
     private final int number;
 
+    public BallNumber(final int number) {
+        verifyBallNumber(number);
+
+        this.number = number;
+    }
+
     public static BallNumber convert(final String inputValue) {
         try {
             return new BallNumber(Integer.parseInt(inputValue));
         } catch (NumberFormatException e) {
             throw new IllegalInputValueException("숫자 만 입력해 주세요.");
         }
-    }
-
-    public BallNumber(final int number) {
-        verifyBallNumber(number);
-
-        this.number = number;
     }
 
     private void verifyBallNumber(final int number) {

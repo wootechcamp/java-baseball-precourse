@@ -1,10 +1,10 @@
 package baseball.enums;
 
+import static baseball.enums.BallStatus.*;
 import baseball.domain.Balls;
 import baseball.exception.IllegalBallStatusesStateException;
 import java.util.Arrays;
 import java.util.List;
-import static baseball.enums.BallStatus.*;
 
 public class BallStatuses {
     public static final List<BallStatus> COMPLETE_BALL_STATUSES = Arrays.asList(STRIKE, STRIKE, STRIKE);

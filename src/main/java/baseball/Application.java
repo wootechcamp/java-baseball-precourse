@@ -1,5 +1,6 @@
 package baseball;
 
+import baseball.component.GameOutputManager;
 import baseball.component.RandomNumberGenerator;
 import baseball.controller.NumberBaseballGameController;
 import baseball.controller.NumberBaseballGameViewer;
@@ -13,7 +14,7 @@ public class Application {
             new Referee(),
             new Computer(new RandomNumberGenerator()),
             new Pitcher(),
-            new NumberBaseballGameViewer()
+            new NumberBaseballGameViewer(new GameOutputManager())
         );
 
         controller.start();

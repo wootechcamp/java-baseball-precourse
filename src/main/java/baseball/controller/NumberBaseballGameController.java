@@ -7,9 +7,6 @@ import baseball.domain.Referee;
 import baseball.enums.BallStatuses;
 import baseball.enums.GameStatus;
 import baseball.exception.BaseballRuntimeException;
-import baseball.exception.IllegalInputValueException;
-import java.text.MessageFormat;
-import nextstep.utils.Console;
 
 public class NumberBaseballGameController {
     private static GameStatus gameStatus = GameStatus.START;
@@ -22,6 +19,8 @@ public class NumberBaseballGameController {
 
     public NumberBaseballGameController(final Referee referee, final Computer computer, final Pitcher pitcher,
         final NumberBaseballGameViewer viewer) {
+        init();
+
         this.referee = referee;
         this.computer = computer;
         this.pitcher = pitcher;
@@ -36,17 +35,20 @@ public class NumberBaseballGameController {
         }
     }
 
+    private void init() {
+        changeGameStatus(GameStatus.START);
+    }
+
     private void round() {
         try {
-            viewer.printGameMessage(gameStatus);
-
-            final BallStatuses ballStatuses = referee.judge(computerBalls, pitcher.throwBalls(insertNumbers()));
+            final String inputValue = viewer.insertNumbers(gameStatus);
+            final BallStatuses ballStatuses = referee.judge(computerBalls, pitcher.throwBalls(inputValue));
 
             viewer.printGameResult(ballStatuses);
 
             completeGame(ballStatuses);
         } catch (BaseballRuntimeException e) {
-            System.out.println(e.getMessage());
+            viewer.printErrorMessage(e);
         }
     }
 
@@ -56,7 +58,6 @@ public class NumberBaseballGameController {
         }
 
         changeGameStatus(GameStatus.COMPLETE);
-
         chooseGameContinueOrNot();
     }
 
@@ -65,9 +66,7 @@ public class NumberBaseballGameController {
             return;
         }
 
-        viewer.printGameMessage(gameStatus);
-
-        final String status = insertStatus();
+        final String status = viewer.insertStatus(gameStatus);
 
         restartGame(status);
         terminateGame(status);
@@ -89,35 +88,13 @@ public class NumberBaseballGameController {
         }
 
         changeGameStatus(GameStatus.TERMINATE);
-
-        viewer.printGameMessage(gameStatus);
     }
 
     private void prepareBalls() {
         computerBalls = computer.prepareBalls();
     }
 
-    private String insertNumbers() {
-        return Console.readLine();
-    }
-
-    private String insertStatus() {
-        final String status = Console.readLine();
-
-        verifyChooseStatus(status);
-
-        return status;
-    }
-
     private void changeGameStatus(final GameStatus status) {
         gameStatus = status;
-    }
-
-    private void verifyChooseStatus(final String status) {
-        if (!GameStatus.isChooseStatus(status)) {
-            throw new IllegalInputValueException(MessageFormat.format("{0}이나 {1}의 숫자만 입력하세요.",
-                GameStatus.RESTART.getStatus(), GameStatus.TERMINATE.getStatus())
-            );
-        }
     }
 }
