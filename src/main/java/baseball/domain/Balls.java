@@ -1,13 +1,13 @@
 package baseball.domain;
 
 import baseball.exception.BallsSizeOutOfIndexException;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Balls {
     public static final int BALLS_SIZE = BallPosition.ALLOW_POSITIONS.size();
 
-    private int index;
     private final List<Ball> balls = new ArrayList<>();
 
     public Balls(final Ball ball) {
@@ -18,7 +18,6 @@ public class Balls {
         verifyBalls(balls);
 
         this.balls.addAll(balls);
-        this.index = this.balls.size();
     }
 
     public static Balls convert(final String[] inputValues) {
@@ -31,8 +30,8 @@ public class Balls {
         return new Balls(balls);
     }
 
-    public int getIndex() {
-        return index;
+    public int getSize() {
+        return balls.size();
     }
 
     public List<Ball> get() {
@@ -45,11 +44,6 @@ public class Balls {
         }
 
         balls.add(ball);
-        increaseIndex();
-    }
-
-    private void increaseIndex() {
-        this.index += 1;
     }
 
     private void verifyBalls(final List<Ball> balls) {
