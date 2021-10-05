@@ -7,9 +7,6 @@ import baseball.domain.Referee;
 import baseball.enums.BallStatuses;
 import baseball.enums.GameStatus;
 import baseball.exception.BaseballRuntimeException;
-import baseball.exception.IllegalInputValueException;
-import java.text.MessageFormat;
-import nextstep.utils.Console;
 
 public class NumberBaseballGameController {
     private static GameStatus gameStatus = GameStatus.START;
@@ -44,7 +41,8 @@ public class NumberBaseballGameController {
 
     private void round() {
         try {
-            final BallStatuses ballStatuses = referee.judge(computerBalls, pitcher.throwBalls(insertNumbers()));
+            final String inputValue = viewer.insertNumbers(gameStatus);
+            final BallStatuses ballStatuses = referee.judge(computerBalls, pitcher.throwBalls(inputValue));
 
             viewer.printGameResult(ballStatuses);
 
@@ -68,7 +66,7 @@ public class NumberBaseballGameController {
             return;
         }
 
-        final String status = insertStatus();
+        final String status = viewer.insertStatus(gameStatus);
 
         restartGame(status);
         terminateGame(status);
@@ -94,73 +92,6 @@ public class NumberBaseballGameController {
 
     private void prepareBalls() {
         computerBalls = computer.prepareBalls();
-    }
-
-    private String insertNumbers() {
-        String numbers;
-        do {
-            viewer.printGameMessage(gameStatus);
-            numbers = Console.readLine();
-
-            verifyInsertNumbers(numbers);
-        } while (isAlreadyExistNumber(numbers));
-
-        return numbers;
-    }
-
-    private String insertStatus() {
-        String status;
-        do {
-            viewer.printGameMessage(gameStatus);
-            status = Console.readLine();
-
-            verifyInsertStatus(status);
-        } while (!GameStatus.isChooseStatus(status));
-
-        return status;
-    }
-
-    private void verifyInsertStatus(final String status) {
-        if (GameStatus.isChooseStatus(status)) {
-            return;
-        }
-
-        try {
-            throw new IllegalInputValueException(MessageFormat.format("{0}이나 {1}의 값을 입력해주세요.",
-                GameStatus.RESTART.getStatus(), GameStatus.TERMINATE.getStatus()));
-        } catch (IllegalInputValueException e) {
-            viewer.printErrorMessage(e);
-        }
-    }
-
-    private void verifyInsertNumbers(final String numbers) {
-        if (!isAlreadyExistNumber(numbers)) {
-            return;
-        }
-
-        try {
-            throw new IllegalInputValueException("같은 숫자는 입력 할 수 없습니다.");
-        } catch (IllegalInputValueException e) {
-            viewer.printErrorMessage(e);
-        }
-    }
-
-    private boolean isAlreadyExistNumber(String numbers) {
-        boolean isAlreadyExist = false;
-        final String[] dividedNumbers = numbers.split("");
-
-        for (int index = 0; index < dividedNumbers.length; index++) {
-            isAlreadyExist |= hasSameNumber(dividedNumbers, index);
-        }
-
-        return isAlreadyExist;
-    }
-
-    private boolean hasSameNumber(String[] dividedNumbers, int index) {
-        if (index == dividedNumbers.length - 1) {
-            return false;
-        }
-        return dividedNumbers[index].equals(dividedNumbers[index + 1]);
     }
 
     private void changeGameStatus(final GameStatus status) {
