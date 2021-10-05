@@ -50,6 +50,17 @@ public class ApplicationTest extends NSTest {
     }
 
     @Test
+    void 스트라이크와_볼() {
+        try (final MockedStatic<Randoms> mockRandoms = mockStatic(Randoms.class)) {
+            mockRandoms
+                .when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
+                .thenReturn(7, 1, 3);
+            running("739", "731");
+            verify("1스트라이크 1볼", "1스트라이크 2볼");
+        }
+    }
+
+    @Test
     void 게임_중_입력오류() {
         try (final MockedStatic<Randoms> mockRandoms = mockStatic(Randoms.class)) {
             mockRandoms.when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
